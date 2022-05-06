@@ -1,0 +1,249 @@
+Короткий вариант.
+1. РАБОТА в Git
+
+Делаем форк с гитхаба: forked from dogitteamuserzero/devopsclass
+
+Далее забираем со своего репо гитхаба на локаль
+$ git clone https://github.com/IgorE-ozas-zhuka/devopsclass.git
+
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git
+$ cd devopsclass/
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (master)
+$ ll
+total 13
+-rw-r--r-- 1 IEroshkin 197121  542 May  6 13:57 README.md
+-rw-r--r-- 1 IEroshkin 197121 7312 May  6 13:57 pom.xml
+drwxr-xr-x 1 IEroshkin 197121    0 May  6 13:57 src/
+drwxr-xr-x 1 IEroshkin 197121    0 May  6 13:57 vagrant/
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (master)
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+Переименовываем локальную ветку
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (master)
+$ git branch -M Eroshkin-Igor-DZ1
+
+переключаемся на свою ветку
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
+$ git switch Eroshkin-Igor-DZ1
+Already on 'Eroshkin-Igor-DZ1'
+Your branch is up to date with 'origin/master'.
+
+Пушим ветку в гитхаб и проверям
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
+$ git push -u origin Eroshkin-Igor-DZ1
+
+Добавляем файл с этим описанием 
+$ git add DZ1.txt
+
+$ git commit -m "Добавлено описание выполения дом.задания №1"
+
+$ git push -u origin Eroshkin-Igor-DZ1
+
+$ git branch -a
+* Eroshkin-Igor-DZ1
+  remotes/origin/Eroshkin-Igor-DZ1
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+
+2. РАБОТА с vagrant
+
+Ставим плагины с включенным VPN 
+vagrant plugin install vagrant-hostmanag
+vagrant plugin install vagrant-vbguest
+
+Ставим машины из vagrant-файла (Короткий вариант)
+PS C:\Users\IEroshkin> cd C:\do\git\devopsclass\vagrant\
+PS C:\do\git\devopsclass\vagrant> cd .\Shortcut_provisioning\
+PS C:\do\git\devopsclass\vagrant\Shortcut_provisioning> vagrant up
+
+
+3. СКРИПТ для provision app01
+Некоторые команды из инструкции нуждались в sudo
+
+Вот про эту строчку не понял:
+nano src/main/resources/application.properties
+* Впишите в файл параметры вашего стенда, используя файл-заготовку из рабочего каталога.
+
+В итоге ничего не менял в application.properties, и так заработало.
+
+Итоговое добавление в скрипте tomcat.sh:
+
+systemctl daemon-reload
+systemctl start tomcat
+systemctl enable tomcat
+
+git clone https://github.com/dogitteamuserzero/devopsclass.git
+
+cd devopsclass
+
+mvn install
+
+sudo systemctl stop tomcat
+sudo rm -rf /usr/local/tomcat8/webapps/ROOT*
+sudo cp target/vprofile-v2.war /usr/local/tomcat8/webapps/ROOT.war
+sudo chown tomcat.tomcat /usr/local/tomcat8/webapps -R
+
+sudo systemctl start tomcat
+
+
+
+
+
+После всех работ: закоммитил, запушил и сделал пул-реквест своего форка.
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
+$ git status
+On branch Eroshkin-Igor-DZ1
+Your branch is up to date with 'origin/Eroshkin-Igor-DZ1'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   DZ1.txt
+        modified:   vagrant/Shortcut_provisioning/tomcat.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        vagrant/Shortcut_provisioning/.vagrant/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
+$ git add .
+warning: LF will be replaced by CRLF in vagrant/Shortcut_provisioning/.vagrant/rgloader/loader.rb.
+The file will have its original line endings in your working directory
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
+$ git status
+On branch Eroshkin-Igor-DZ1
+Your branch is up to date with 'origin/Eroshkin-Igor-DZ1'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   DZ1.txt
+        new file:   vagrant/Shortcut_provisioning/.vagrant/bundler/global.sol
+        new file:   vagrant/Shortcut_provisioning/.vagrant/hostmanager/id
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/action_provision
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/action_set_name
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/box_meta
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/creator_uid
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/id
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/index_uuid
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/private_key
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/synced_folders
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/vagrant_cwd
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/action_provision
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/action_set_name
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/box_meta
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/creator_uid
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/id
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/index_uuid
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/private_key
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/synced_folders
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/vagrant_cwd
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/action_provision
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/action_set_name
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/box_meta
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/creator_uid
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/id
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/index_uuid
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/private_key
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/synced_folders
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/vagrant_cwd
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/action_provision
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/action_set_name
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/box_meta
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/creator_uid
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/id
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/index_uuid
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/private_key
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/synced_folders
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/vagrant_cwd
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/action_provision
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/action_set_name
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/box_meta
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/creator_uid
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/id
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/index_uuid
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/private_key
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/synced_folders
+        new file:   vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/vagrant_cwd
+        new file:   vagrant/Shortcut_provisioning/.vagrant/rgloader/loader.rb
+        modified:   vagrant/Shortcut_provisioning/tomcat.sh
+
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
+$ git commit -m "ДЗ1 выполнено"
+[Eroshkin-Igor-DZ1 9075419] ДЗ1 выполнено
+ 50 files changed, 241 insertions(+)
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/bundler/global.sol
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/hostmanager/id
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/action_provision
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/action_set_name
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/box_meta
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/creator_uid
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/id
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/index_uuid
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/private_key
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/synced_folders
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/app01/virtualbox/vagrant_cwd
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/action_provision
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/action_set_name
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/box_meta
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/creator_uid
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/id
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/index_uuid
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/private_key
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/synced_folders
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/db01/virtualbox/vagrant_cwd
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/action_provision
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/action_set_name
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/box_meta
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/creator_uid
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/id
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/index_uuid
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/private_key
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/synced_folders
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/mc01/virtualbox/vagrant_cwd
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/action_provision
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/action_set_name
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/box_meta
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/creator_uid
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/id
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/index_uuid
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/private_key
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/synced_folders
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/rmq01/virtualbox/vagrant_cwd
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/action_provision
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/action_set_name
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/box_meta
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/creator_uid
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/id
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/index_uuid
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/private_key
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/synced_folders
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/machines/web01/virtualbox/vagrant_cwd
+ create mode 100644 vagrant/Shortcut_provisioning/.vagrant/rgloader/loader.rb
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
+$ git push -u origin Eroshkin-Igor-DZ1
+Enumerating objects: 59, done.
+Counting objects: 100% (59/59), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (24/24), done.
+Writing objects: 100% (54/54), 11.69 KiB | 629.00 KiB/s, done.
+Total 54 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To https://github.com/IgorE-ozas-zhuka/devopsclass.git
+   3764b5d..9075419  Eroshkin-Igor-DZ1 -> Eroshkin-Igor-DZ1
+branch 'Eroshkin-Igor-DZ1' set up to track 'origin/Eroshkin-Igor-DZ1'.
+
+
+
