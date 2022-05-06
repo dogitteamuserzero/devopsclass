@@ -1,0 +1,28 @@
+IEroshkin@PNZ-015 MINGW64 /c/do/git
+$ cd devopsclass/
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (master)
+$ ll
+total 13
+-rw-r--r-- 1 IEroshkin 197121  542 May  6 13:57 README.md
+-rw-r--r-- 1 IEroshkin 197121 7312 May  6 13:57 pom.xml
+drwxr-xr-x 1 IEroshkin 197121    0 May  6 13:57 src/
+drwxr-xr-x 1 IEroshkin 197121    0 May  6 13:57 vagrant/
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (master)
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (master)
+$ git branch -M Eroshkin-Igor-DZ1
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
+$ git switch Eroshkin-Igor-DZ1
+Already on 'Eroshkin-Igor-DZ1'
+Your branch is up to date with 'origin/master'.
+
+IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
+$ git push -u origin Eroshkin-Igor-DZ1
+
