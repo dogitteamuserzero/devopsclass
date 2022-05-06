@@ -1,3 +1,11 @@
+РАБОТА в Git
+
+Делаем форк с гитхаба: forked from dogitteamuserzero/devopsclass
+
+Далее забираем со своего репо гитхаба на локаль
+$ git clone https://github.com/IgorE-ozas-zhuka/devopsclass.git
+
+
 IEroshkin@PNZ-015 MINGW64 /c/do/git
 $ cd devopsclass/
 
@@ -15,14 +23,44 @@ $ git branch -a
   remotes/origin/HEAD -> origin/master
   remotes/origin/master
 
+Переименовываем локальную ветку
 IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (master)
 $ git branch -M Eroshkin-Igor-DZ1
 
+переключаемся на свою ветку
 IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
 $ git switch Eroshkin-Igor-DZ1
 Already on 'Eroshkin-Igor-DZ1'
 Your branch is up to date with 'origin/master'.
 
+Пушим ветку в гитхаб и проверям
 IEroshkin@PNZ-015 MINGW64 /c/do/git/devopsclass (Eroshkin-Igor-DZ1)
 $ git push -u origin Eroshkin-Igor-DZ1
+
+Добавляем файл с этим описанием 
+$ git add DZ1.txt
+
+$ git commit -m "Добавлено описание выполения дом.задания №1"
+
+$ git push -u origin Eroshkin-Igor-DZ1
+
+$ git branch -a
+* Eroshkin-Igor-DZ1
+  remotes/origin/Eroshkin-Igor-DZ1
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+
+РАБОТА с vagrant
+
+Ставим плагины с включенным VPN 
+vagrant plugin install vagrant-hostmanag
+vagrant plugin install vagrant-vbguest
+
+Ставим машины из vagrant-файла (Короткий вариант)
+PS C:\Users\IEroshkin> cd C:\do\git\devopsclass\vagrant\
+PS C:\do\git\devopsclass\vagrant> cd .\Shortcut_provisioning\
+PS C:\do\git\devopsclass\vagrant\Shortcut_provisioning> vagrant up
+
+
 
