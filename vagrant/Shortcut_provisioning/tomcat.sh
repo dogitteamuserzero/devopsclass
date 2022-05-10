@@ -42,14 +42,19 @@ WantedBy=multi-user.target
 
 EOT
 
+systemctl daemon-reload
+systemctl start tomcat
+systemctl enable tomcat
 
-yum update -y
 git clone https://github.com/dogitteamuserzero/devopsclass.git
+cd devopsclass
 mvn install
 
 systemctl stop tomcat
-sudo rm -rf /usr/local/tomcat8/webapps/ROOT*
+rm -rf /usr/local/tomcat8/webapps/ROOT*
 cp target/vprofile-v2.war /usr/local/tomcat8/webapps/ROOT.war
 sudo chown tomcat.tomcat /usr/local/tomcat8/webapps -R
-
 systemctl start tomcat
+
+cp /vagrant/application.properties /usr/local/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties
+systemctl restart tomcat
