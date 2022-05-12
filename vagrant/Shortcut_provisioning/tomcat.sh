@@ -41,3 +41,24 @@ Restart=always
 WantedBy=multi-user.target
 
 EOT
+
+systemctl daemon-reload
+systemctl start tomcat
+systemctl enable tomcat
+
+systemctl start firewalld
+systemctl enable firewalld
+firewall-cmd --get-active-zones
+firewall-cmd --zone=public --add-port=8080/tcp --permanent
+firewall-cmd --reload
+
+git clone https://github.com/dogitteamuserzero/devopsclass.git
+cd devopsclass/
+# update app config from prov.file
+cp /vagrant/application.properties src/main/resources/
+mvn install
+systemctl stop tomcat
+rm -rf /usr/local/tomcat8/webapps/ROOT*
+cp target/vprofile-v2.war /usr/local/tomcat8/webapps/ROOT.war
+chown tomcat:tomcat /usr/local/tomcat8/webapps -R
+systemctl start tomcat
