@@ -1,3 +1,5 @@
+# Test Poll SCM
+
 # Prerequisites
 #
 - JDK 1.8 or later
