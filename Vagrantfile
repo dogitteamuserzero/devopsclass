@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
   config.vm.boot_timeout = 900
 
   config.vm.define "jenkins" do |build|
-	build.vm.box = "geerlingguy/ubuntu1804"
+	build.vm.box = "geerlingguy/ubuntu2004"
     build.vm.hostname = "jenkins"
 	build.vm.network "private_network", ip: "192.168.3.90"
 	build.vm.provider "virtualbox" do |vb|
@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "sonarqube" do |sq|
-	sq.vm.box = "geerlingguy/ubuntu1804"
+	sq.vm.box = "geerlingguy/ubuntu2004"
     sq.vm.hostname = "sonarqube"
 	sq.vm.network "private_network", ip: "192.168.3.92"
 	sq.vm.provider "virtualbox" do |vb|

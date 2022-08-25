@@ -1,4 +1,4 @@
-app01-staging ansible_host=192.168.3.95
+app01-staging ansible_host=192.168.3.94
 
 [appsrvgrp]
 app01-staging

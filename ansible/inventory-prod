@@ -1,4 +1,4 @@
-app01-prod ansible_host=192.168.3.97
+app01-prod ansible_host=192.168.3.96
 
 [appsrvgrp]
 app01-prod
