@@ -38,10 +38,11 @@ memcached -p 11211 -U 11111 -u memcached -d
 sleep 30
 yum install socat -y
 yum install wget -y
-wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.10/rabbitmq-server-3.6.10-1.el7.noarch.rpm
+yum install erlang
+wget https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v3_6_16/rabbitmq-server-3.6.16-1.el7.noarch.rpm
 rpm --import https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
 yum update
-rpm -Uvh rabbitmq-server-3.6.10-1.el7.noarch.rpm
+rpm -Uvh --nodeps rabbitmq-server-3.6.16-1.el7.noarch.rpm
 systemctl start rabbitmq-server
 systemctl enable rabbitmq-server
 systemctl status rabbitmq-server
@@ -49,4 +50,3 @@ echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
 rabbitmqctl add_user test test
 rabbitmqctl set_user_tags test administrator
 systemctl restart rabbitmq-server
-
