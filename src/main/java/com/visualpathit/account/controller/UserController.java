@@ -125,14 +125,14 @@ public class UserController {
     /** {@inheritDoc} */
     @RequestMapping(value = { "/user/{username}"} , method = RequestMethod.GET)
     public final String userUpdate(@PathVariable(value="username") String username,final Model model) {
-    	User user = userService.findByUsername(username); 
+    	User user = userService.findByName(username); 
     	System.out.println("User Data:::" + user);
     	model.addAttribute("user", user);
     	return "userUpdate";
     }
     @RequestMapping(value = { "/user/{username}"} , method = RequestMethod.POST)
     public final String userUpdateProfile(@PathVariable(value="username") String username,final @ModelAttribute("user") User userForm,final Model model) {
-    	User user = userService.findByUsername(username);
+    	User user = userService.findByName(username);
     	user.setUsername(userForm.getUsername());
     	user.setUserEmail(userForm.getUserEmail());
     	user.setDateOfBirth(userForm.getDateOfBirth());

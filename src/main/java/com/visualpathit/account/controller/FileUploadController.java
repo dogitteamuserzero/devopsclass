@@ -54,7 +54,7 @@ public class FileUploadController {
 				File serverFile = new File(dir.getAbsolutePath()
 						+ File.separator + name+".png");
 				//image saving 
-				User user = userService.findByUsername(userName);
+				User user = userService.findByName(userName);
 				user.setProfileImg(name +".png");
 				user.setProfileImgPath(serverFile.getAbsolutePath());
 				userService.save(user);
